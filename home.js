@@ -22,6 +22,10 @@ app.get('/post-food', function (req, res) {
 	res.render(__dirname + '/post-food.html');
 });
 
+app.get('/find-food', function(req, res) {
+	res.render(__dirname + '/mappage.html');
+});
+
 app.get('/information', function(req, res) {
 	console.log(req.query);
 	allSubmissions = JSON.parse(fs.readFileSync('submissions.json', 'utf8'));
