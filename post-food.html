@@ -5,12 +5,13 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<style>
 	h2 {
-		background-color: green;
+		background-color: black;
+		color: white;
 	}
-</style>
+	</style>
 </head>
 
-<body class='container'>
+<body class='container' style="background-color:white">
 	<h2 style='text-align: left'>{{headerMessage}}</h2>
 	<ul class="list-group" style="overflow-y: scroll; max-height: 50%;">
 	</ul>
@@ -39,9 +40,8 @@
 			name="location" placeholder="Ex. STC">
 			<script>
 				function initialize() {
-  					var input = document.getElementById('locationInput');
-  					var incomplete = new google.maps.places.Autocomplete(input);
-  					
+					var input = document.getElementById('locationInput');
+					var autocomplete = new google.maps.places.Autocomplete(input);
 				}
 				google.maps.event.addDomListener(window, 'load', initialize);
 			</script>
