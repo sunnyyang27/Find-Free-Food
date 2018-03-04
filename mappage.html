@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta charset="utf-8">
+
+<!--link rel="stylesheet" type="text/css" href="mappage.css"-->
+
+<style>
+body {
+	background-color: black;
+}
+#container1 {
+	position: relative;
+	width: 70%;
+	height: 80px;
+	background-color: rgba(10, 180, 255, 1);
+}
+#welcome {
+	padding: 15px;
+	color: rgba(255, 255, 255, 1);
+	font-size: 30px;
+	font-family: ;
+}
+#search {
+	color: rgba(255, 255, 255, 1);
+	font-size: 25px;
+	font-family: ;
+}
+#map {
+    height: 400px;
+    width: 400px;
+}
+#recentsearch {
+	color: rgba(255, 255, 255, 1);
+	font-size: 25px;
+	font-family: ;
+}
+</style>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3CACX7SxouQ8jjGxljXo4nEIyZDh7sBs&callback=initMap">
+</script>
+</head>
+
+
+<body>
+
+<!-- WELCOME -->
+
+<div id="container1"><div id="welcome">{{welcomeMessage}}</div></div>
+<br>
+
+
+<!-- FORM-->
+
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+    <script>
+      // This example adds a search box to a map, using the Google Place Autocomplete
+      // feature. People can enter geographical searches. The search box will return a
+      // pick list containing a mix of places and predicted search terms.
+
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13,
+          mapTypeId: 'roadmap'
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+            }));
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
+
+    </script>
+
+<form action="search" id="search">
+	Search for a place/location: <br>
+	<input type='text' name='name'> <br>
+	<input type='submit' value='submit'>
+</form>
+<br>
+
+
+<!-- MAP -->
+
+
+<div id="map"></div>
+<script>
+	var map;
+      function initMap() {
+      	console.log('hello');
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 17,
+          center: new google.maps.LatLng(43.4723, -80.5449),
+          mapTypeId: 'terrain'
+        });
+
+        	// Create a <script> tag and set the USGS URL as the source.
+        //var script = document.createElement('script');
+        	// This example uses a local copy of the GeoJSON stored at
+        	//http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
+        	//script.src = 'test1.js';
+        //document.getElementsByTagName('head')[0].appendChild(script);
+//USE AWS or DOMAIN.com
+      	map.data.loadGeoJson('http://www.CORS-ENABLED-SITE.com/data.json');
+      	//map.data.setStyle({
+      	//	fillColor: 'blue'
+      	//})
+      }
+
+      // Loop through the results array and place a marker for each
+      // set of coordinates.
+      window.eqfeed_callback = function(results) {
+      	map.data.loadGeoJson('http://www.CORS-ENABLED-SITE.com/data.json');
+        for (var i = 0; i < results.features.length; i++) {
+          var coords = results.features[i].geometry.coordinates;
+          var latLng = new google.maps.LatLng(coords[1],coords[0]);
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+
+	/*function initMap() {
+		console.log('hello');
+        var uluru = {lat: -25.363, lng: 131.044};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 4,
+          center: uluru
+        });
+        var marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      } */
+
+</script>
+
+<br>
+
+<div id="recentsearch">Recent Searches</div>
+<ul>
+	{{#each searches}}
+	<li>{{this.name}}: {{this.searches}}</li>
+	{{/each}}
+</ul>
+
+
+
+</body>
+</html>
