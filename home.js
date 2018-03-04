@@ -4,12 +4,10 @@ var app = require('express')();
 var http = require('http').Server(app);
 var hbs = require('hbs');
 var fs = require('fs');
-//var allSubmissions = JSON.parse(fs.readFileSync('submissions.json', 'utf8'));
 var temp;
-//var hover = document.getElementById("hover")
+//var publicPath = path.resolve(__dirname, 'public');
 
-
-//test.addEventListener("mouseenter", function(event))
+app.use(express.static(publicPath));
 
 app.set('view engine', 'html');
 app.engine('html', hbs.__express);
@@ -23,7 +21,9 @@ app.get('/post-food', function (req, res) {
 });
 
 app.get('/find-food', function(req, res) {
-	res.render(__dirname + '/mappage.html');
+	res.render(__dirname + '/mappage.html', {
+		'welcomeMessage': 'Find Free Food Here'
+	});
 });
 
 app.get('/information', function(req, res) {
