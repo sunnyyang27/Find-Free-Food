@@ -4,6 +4,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 <meta charset="utf-8">
 
+<script src="jquery-3.3.1.min.js"></script>
+
 <!--link rel="stylesheet" type="text/css" href="mappage.css"-->
 
 <style>
@@ -31,11 +33,82 @@ body {
     height: 400px;
     width: 400px;
 }
-#recentsearch {
-	color: rgba(255, 255, 255, 1);
-	font-size: 25px;
-	font-family: ;
-}
+/* MAP */
+
+/* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      /* Optional: Makes the sample page fill the window. */
+      #description {
+        width: 200px;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+      }
+      #infowindow-content .title {
+        width: 200px;
+        font-weight: bold;
+      }
+      #infowindow-content {
+        width: 200px;
+        display: none;
+      }
+      #map #infowindow-content {
+        width: 200px;
+        display: inline;
+      }
+      .pac-card {
+        width: 200px;
+        margin: 10px 10px 0 0;
+        border-radius: 2px 0 0 2px;
+        box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        outline: none;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+        background-color: #fff;
+        font-family: Roboto;
+      }
+      #pac-container {
+        width: 200px;
+        padding-bottom: 12px;
+        margin-right: 12px;
+      }
+      .pac-controls {
+        width: 200px;
+        display: inline-block;
+        padding: 5px 11px;
+      }
+      .pac-controls label {
+        width: 200px;
+        font-family: Roboto;
+        font-size: 13px;
+        font-weight: 300;
+      }
+      #pac-input {
+        width: 200px;
+        background-color: #fff;
+        font-family: Roboto;
+        font-size: 15px;
+        font-weight: 300;
+        margin-left: 12px;
+        padding: 0 11px 0 13px;
+        text-overflow: ellipsis;
+        width: 400px;
+      }
+      #pac-input:focus {
+        width: 200px;
+        border-color: #4d90fe;
+      }
+      #title {
+        width: 200px;
+        color: #fff;
+        background-color: #4d90fe;
+        font-size: 25px;
+        font-weight: 500;
+        padding: 6px 12px;
+      }
+      #target {
+        width: 200px;
+      }
 </style>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD3CACX7SxouQ8jjGxljXo4nEIyZDh7sBs&callback=initMap">
 </script>
@@ -52,8 +125,11 @@ body {
 
 <!-- FORM-->
 
+<div id="search">Search for a place / location</div>
+	
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-    <div id="map"></div>
+    
+<div id="map"></div>
     <script>
       // This example adds a search box to a map, using the Google Place Autocomplete
       // feature. People can enter geographical searches. The search box will return a
@@ -132,14 +208,6 @@ body {
 
     </script>
 
-<form action="search" id="search">
-	Search for a place/location: <br>
-	<input type='text' name='name'> <br>
-	<input type='submit' value='submit'>
-</form>
-<br>
-
-
 <!-- MAP -->
 
 
@@ -153,46 +221,40 @@ body {
           center: new google.maps.LatLng(43.4723, -80.5449),
           mapTypeId: 'terrain'
         });
-
-        	// Create a <script> tag and set the USGS URL as the source.
-        //var script = document.createElement('script');
-        	// This example uses a local copy of the GeoJSON stored at
-        	//http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojsonp
-        	//script.src = 'test1.js';
-        //document.getElementsByTagName('head')[0].appendChild(script);
-//USE AWS or DOMAIN.com
-      	map.data.loadGeoJson('http://www.CORS-ENABLED-SITE.com/data.json');
-      	//map.data.setStyle({
-      	//	fillColor: 'blue'
-      	//})
-      }
-
-      // Loop through the results array and place a marker for each
-      // set of coordinates.
-      window.eqfeed_callback = function(results) {
-      	map.data.loadGeoJson('http://www.CORS-ENABLED-SITE.com/data.json');
-        for (var i = 0; i < results.features.length; i++) {
-          var coords = results.features[i].geometry.coordinates;
-          var latLng = new google.maps.LatLng(coords[1],coords[0]);
-          var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
-          });
-        }
-      }
-
-	/*function initMap() {
-		console.log('hello');
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
+        //list of data
+        var myLatLng1 = {lat: 43.4723, lng: -80.5449};
         var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
+          position: myLatLng1,
+          map: map,
+          title: 'Hello World!'
         });
-      } */
+        var myLatLng2 = {lat: 43.471485, lng: -80.542981};
+        var marker = new google.maps.Marker({
+          position: myLatLng2,
+          map: map,
+          title: 'Hello World!'
+        });
+        var myLatLng3 = {lat: 43.47255, lng: -80.546};
+        var marker = new google.maps.Marker({
+          position: myLatLng3,
+          map: map,
+          title: 'Hello World!'
+        });
+        var myLatLng4 = {lat: 43.4731, lng: -80.5441};
+        var marker = new google.maps.Marker({
+          position: myLatLng4,
+          map: map,
+          title: 'Hello World!'
+        });
+        var myLatLng4 = {lat: 43.4731, lng: -80.5458};
+        var marker = new google.maps.Marker({
+          position: myLatLng4,
+          map: map,
+          title: 'Hello World!'
+        });
+
+        //map.data.loadGeoJson('test1.json');
+  }
 
 </script>
 
@@ -204,7 +266,6 @@ body {
 	<li>{{this.name}}: {{this.searches}}</li>
 	{{/each}}
 </ul>
-
 
 
 </body>
