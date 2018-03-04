@@ -2,20 +2,58 @@
 	<title>Submitted</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<style>
+    #container {
+	position: relative;
+	width: 325px;
+	background-color: rgba(0, 0, 0, 1);
+	word-break: keep-all;
+    font-family: sans-serif;
+    padding: -10px;
+    left: 15px;
+}
+    #title {
+	padding: 10px;
+	color: rgba(255, 255, 255, 1);
+	font-size: 100px;
+	font-family: sans-serif;
+	word-break: keep-all;
+}
+    #thanks {
+	padding: 10px;
+	color: rgba(0, 0, 0, 1);
+	font-size: 100px;
+	font-family: sans-serif;
+	word-break: keep-all;
+    margin-left: 2px;
+}
+    #sentence {
+	padding: 10px;
+	color: rgba(0, 0, 0, 1);
+	font-size: 100px;
+	font-family: sans-serif;
+	word-break: keep-all;
+    margin-left: 2px;
+}
+    #merci {
+	padding: 10px;
+	color: rgba(0, 0, 0, 1);
+	font-size: 100px;
+	font-family: sans-serif;
+	word-break: keep-all;
+}
+    
+    </style>
 </head>
 
-<body class='container'>
-	<h1 style='text-align: left'>SUBMISSION ACCEPTED</h1>
-	<ul class="list-group" style="overflow-y: scroll; max-height: 50%;">
-	</ul>
-	<h3 style='text-align: left'>Thank you for sharing your free food location!</h3>
-	<p>
-		Other users will be notified of the time and location of the event.
-	</p>
-	<p>
-		Thank you, <br>
-		Find Free Food Team
-	</p>
+<body>
+    <div id="container"><div id="title" style="font-size:25px"><i><b>SUBMISSION ACCEPTED</b></i></div></div>
+    <div id="thanks" style = "font-size: 30px"><i><b>Thank you for sharing your free food location!</b></i></div>
+    <div id="sentence" style = "font-size: 20px">Other users will be notified of the time and location of the event.</div>
+	<div id="merci" style = "font-size: 20px">Thank you, <br> Find Free Food Team</div>
+
 	<form action="back">
 		<input type="back" class="btn btn-primary" value="<<Back">
 	</form>
