@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,6 @@ body {
 #image {
 	height: 150px;
 	width: 150px;
-
 }
 #container {
 	position: relative;
@@ -47,13 +47,22 @@ body {
 }
 .linkbox {
 	position: relative;
+	width: 50%;
+	height: 40px;
+	background-color: rgba(0, 0, 124, 1);
+	padding: 10px;
+    margin-left: 27.5px;
+    margin: auto;
+}
+.post {
+    position: relative;
 	width: 45%;
 	height: 25px;
 	background-color: rgba(0, 0, 124, 1);
 	padding: 10px;
     margin-left: 27.5px;
     margin: auto;
-}
+    }
 /*LINK*/
 a:link, a:visited, a:active, a:hover {
 	color: rgba(255, 255, 255,1);
@@ -61,6 +70,14 @@ a:link, a:visited, a:active, a:hover {
 	font-family: Sans-serif;
 	text-decoration: none;
 }
+    
+input {
+    color: rgba(255, 255, 255,1);
+	font-size: 20px;
+	font-family: Sans-serif;
+	text-decoration: none;
+        
+    }
 /*LINK*/
 #icon1 {
 	color: rgba(0, 190, 255, 1);
@@ -90,23 +107,24 @@ a:link, a:visited, a:active, a:hover {
 
 <!-- LINKS -->
 
-<form action="post-food">
+<div id="post"><form action="post-food" style = "font-family: sans-serif; text-align: center; color: white;">
 	<input type="submit" value="POST Free Food" class="linkbox"><br>
 	<br>
 </form>
-<form action="find-food">
+    </div>
+<div id="post"><form action="find-food" style = "font-family: sans-serif; text-align: center;">
 	<input type="submit" value="FIND Free Food" class="linkbox"><br>
 	<br>
-</form>
+    </form></div>
 
 <!-- ICONS -->
 
 
-<a href="https://facebook.html" id="icon1"><img src="https://imgur.com/PZTEzkk" width = "50px" height = "50px"></a>
+<a href="https://facebook.com" id="icon1"><img src="https://i.imgur.com/PZTEzkk.png" width = "50px" height = "50px"></a>
 
-<a href="https://twitter.html" id="icon2"><img src="https://imgur.com/E2CFAsw" width = "50px" height = "50px"></a>
+<a href="https://twitter.com" id="icon2"><img src="https://i.imgur.com/E2CFAsw.png" width = "50px" height = "50px"></a>
 
-<a href="https://instagram.html" id="icon3"><img src="https://imgur.com/0iXWMRE" width = "50px" height = "50px"></a>
+<a href="https://instagram.com" id="icon3"><img src="https://i.imgur.com/0iXWMRE.png" width = "50px" height = "50px"></a>
 
 </body>
 
