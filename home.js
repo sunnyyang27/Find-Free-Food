@@ -5,9 +5,6 @@ var http = require('http').Server(app);
 var hbs = require('hbs');
 var fs = require('fs');
 var temp;
-//var publicPath = path.resolve(__dirname, 'public');
-
-app.use(express.static(publicPath));
 
 app.set('view engine', 'html');
 app.engine('html', hbs.__express);
@@ -27,13 +24,9 @@ app.get('/find-food', function(req, res) {
 });
 
 app.get('/information', function(req, res) {
-	console.log(req.query);
 	allSubmissions = JSON.parse(fs.readFileSync('submissions.json', 'utf8'));
 	allSubmissions.push(req.query);
 	fs.writeFileSync('submissions.json', JSON.stringify(allSubmissions));
-	//geocodedAddr = JSON.parse(fs.readFileSync('geocoding.json', 'utf8'));
-	//allSubmissions.push(req.query);
-	//fs.writeFileSync('submissions.json', JSON.stringify(allSubmissions));
 	res.render(__dirname + '/thank_you.html');
 });
 
